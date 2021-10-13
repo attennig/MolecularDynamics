@@ -3,7 +3,7 @@ function x = hooke_verlet_solution(n, k, dist, H, step, T, x0, v0)
     M = zeros(n,n) - diag(ones(n-1,1),1) - diag(ones(n-1,1),-1) + 2*diag(ones(n,1));
     M(1,1) = 1;
     M(n,n) = 1;
-    
+   
     equilibrium = [0:n-1]'*dist;
     x = zeros(n,length(T));
     x(:,1) = x0;

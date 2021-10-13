@@ -1,12 +1,13 @@
 clear all;
+clc;
 % simulation's parameters
-n = 6;
+n = 4;
 k = 1;
 dist = 4;
 % temporal horizon
 H = 100;
 % step size
-step = 0.5;
+step = 0.1;
 T = [0:step:H];
 equilibrium = [0:n-1]'*dist;
 % initial conditions
@@ -22,9 +23,9 @@ x_verlet = hooke_verlet_solution(n, k, dist, H, step, T, x0, v0);
 %particles' film
 figure;
 plot([],[]);
-axis([-dist dist*n+dist -0.5 0.5]);
 for t = [1:length(T)]
     scatter(x(:,t), zeros(n,1), 'filled');    
+    xlim([-dist dist*n+dist]);
     pause(0.1);
     drawnow;
 end
@@ -52,6 +53,7 @@ subtitle("1D, "+n+" particles");
 xlabel("time");
 ylabel("space");
 
+savefig("Figures/comparison.fig");
 % plotting errors
 figure;
 subplot(1,2,1);
@@ -67,3 +69,5 @@ title("Hooke, Verlet mean error");
 subtitle("1D, "+n+" particles");
 xlabel("time");
 ylabel("error");
+
+
